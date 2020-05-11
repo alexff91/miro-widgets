@@ -1,0 +1,40 @@
+logging:
+  level: error
+  level.org.springframework.data: debug
+
+server:
+  port: 8081
+
+spring:
+  datasource:
+    hikari:
+      minimumIdle: 5
+      maximumPoolSize: 20
+      idleTimeout: 30000
+      pool-name: SpringBootJPAHikariCP
+      auto-commit: false
+      maxLifetime: 58000
+      connection-timeout: 30000
+    password: 40PdyLX3pm
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:widget_db;
+    username: miro
+    driver-class-name: org.h2.Driver
+    platform: postgresql
+    schema-password: dU6qVPAhAqQT3GJHFXgcyEYXq44qwC
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.H2Dialect
+      connection:
+        provider_class: org.hibernate.hikaricp.internal.HikariCPConnectionProvider
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+        dialect: org.hibernate.dialect.H2Dialect
+        jdbc:
+          batch_size: 1000
+        order_inserts: true
+        order_updates: true
+    show-sql: true

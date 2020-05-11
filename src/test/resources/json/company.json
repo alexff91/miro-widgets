@@ -1,0 +1,135 @@
+{
+  "companyDescription": "Банк",
+  "companyId": 1,
+  "companyLogoPath": "https://upload.wikimedia.org/wikipedia/commons/7/77/Alfa-Bank.svg",
+  "companyName": "Альфа банк",
+  "creationDate": "2018-05-27T13:16:30.894Z",
+  "subscription": {
+    "endDate": "2019-05-27T13:16:30.894Z",
+    "id": 1,
+    "startDate": "2018-05-27T13:16:30.894Z",
+    "type": "Gold"
+  },
+  "users": [
+    {
+      "avatarPath": "string",
+      "companyId": 1,
+      "email": "vasya.petrov@abanck.ru",
+      "lastName": "Petrov",
+      "name": "Vasya",
+      "role": "admin",
+      "userId": 1
+    }
+  ],
+  "vacancies": [
+    {
+      "companyId": 1,
+      "creationDate": "2018-05-27T13:16:30.895Z",
+      "description": "Альфа-Банк – это возможность реализовать свой потенциал и участвовать в амбициозных проектах лидера банковского рынка.<br><br>Начни карьеру в Альфа-Банке!<br><br>ОБЯЗАННОСТИ:<br>- привлечение и консультирование клиентов;<br>- оформление потребительских кредитов;<br>- ведение статистики и формирование отчетности.<br><br>ТРЕБОВАНИЯ:<br>- образование не ниже среднего специального;<br>- уверенный пользователь ПК;<br>- приветствуется опыт работы в аналогичной должности (кредитный эксперт, специалист по оформлению кредитов и т.д.) / опыт активных продаж (менеджер по привлечению клиентов, продавец бытовой техники и электроники, промоутер);<br>- рассматриваем кандидатов без опыта работы.<br><br>УСЛОВИЯ:<br>- место работы: магазины-партнеры Банка (ДНС - ТЦ Парус, Гранд, Макси);<br>- сменный график работы;<br>- средний совокупный доход - от 23 000 руб. (оклад + бонус по результатам выполнения плановых показателей);<br><br>ДМС;<br>- льготные условия на услуги Банка и компаний-партнеров;<br>- отличные возможности для профессионального развития и карьерного роста.",
+      "position": "Кредитный специалист",
+      "questions": [
+        {
+          "durationMax": 80000,
+          "durationToRead": 15000,
+          "id": 1,
+          "isCompulsory": true,
+          "orderNumber": 1,
+          "question": "Почему выбрали в качестве постоянной работы должность кредитного специалиста?",
+          "vacancyId": 1
+        },
+        {
+          "durationMax": 90000,
+          "durationToRead": 20000,
+          "id": 2,
+          "isCompulsory": true,
+          "orderNumber": 3,
+          "question": "Вы будете успешны в коллективе? Почему вы так думаете?",
+          "vacancyId": 1
+        },
+        {
+          "durationMax": 70000,
+          "durationToRead": 0,
+          "id": 3,
+          "isCompulsory": true,
+          "orderNumber": 4,
+          "question": "Перечислите те критерии, которые для вас наиболее важны в этой работе.",
+          "vacancyId": 1
+        },
+        {
+          "durationMax": 30000,
+          "durationToRead": 20000,
+          "id": 11,
+          "isCompulsory": true,
+          "orderNumber": 5,
+          "question": "Назовите минимальный уровень заработной платы, на которую вы готовы согласиться.",
+          "vacancyId": 1
+        },
+        {
+          "durationMax": 60000,
+          "durationToRead": 20000,
+          "id": 4,
+          "isCompulsory": true,
+          "orderNumber": 2,
+          "question": "Как вы видите развитие своей карьеры через 3-5 лет?",
+          "vacancyId": 1
+        },
+        {
+          "durationMax": 60000,
+          "durationToRead": 20000,
+          "id": 5,
+          "isCompulsory": true,
+          "orderNumber": 11,
+          "question": "Какие ваши самые сильные качества?",
+          "vacancyId": 1
+        },
+        {
+          "durationMax": 60000,
+          "durationToRead": 20000,
+          "id": 6,
+          "isCompulsory": true,
+          "orderNumber": 6,
+          "question": "Какие у вас есть недостатки?",
+          "vacancyId": 1
+        },
+        {
+          "durationMax": 60000,
+          "durationToRead": 20000,
+          "id": 7,
+          "isCompulsory": true,
+          "orderNumber": 7,
+          "question": "Расскажите о ваших успехах на предыдущем месте работы.",
+          "vacancyId": 1
+        },
+        {
+          "durationMax": 60000,
+          "durationToRead": 20000,
+          "id": 8,
+          "isCompulsory": true,
+          "orderNumber": 8,
+          "question": "Расскажите о ваших провалах на предыдущем месте работы.",
+          "vacancyId": 1
+        },
+        {
+          "durationMax": 60000,
+          "durationToRead": 20000,
+          "id": 9,
+          "isCompulsory": true,
+          "orderNumber": 9,
+          "question": "Представьте, что перед вами клиент. Продайте ему iPhone X",
+          "vacancyId": 1
+        },
+        {
+          "durationMax": 60000,
+          "durationToRead": 20000,
+          "id": 10,
+          "isCompulsory": true,
+          "orderNumber": 10,
+          "question": "Клиент сказал что это дорого. Что вы ему ответите?",
+          "vacancyId": 1
+        }
+      ],
+      "userId": 1,
+      "vacancyId": 1
+    }
+  ]
+}
