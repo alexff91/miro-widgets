@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -39,6 +40,7 @@ public class WidgetServiceImpl implements WidgetService {
 
             higherWidgets.forEach(w -> {
                 w.setZIndex(w.getZIndex() + 1);
+                w.setLastModificationTs(Instant.now());
             });
             repository.saveAll(higherWidgets);
         }

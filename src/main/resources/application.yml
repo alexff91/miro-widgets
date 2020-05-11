@@ -5,18 +5,19 @@ logging:
 server:
   port: 8081
 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
 spring:
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
   datasource:
-    hikari:
-      minimumIdle: 5
-      maximumPoolSize: 20
-      idleTimeout: 30000
-      pool-name: SpringBootJPAHikariCP
-      auto-commit: false
-      maxLifetime: 58000
-      connection-timeout: 30000
     password: 40PdyLX3pm
-    type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:h2:mem:widget_db;
     username: miro
     driver-class-name: org.h2.Driver
@@ -26,9 +27,6 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
-      dialect: org.hibernate.dialect.H2Dialect
-      connection:
-        provider_class: org.hibernate.hikaricp.internal.HikariCPConnectionProvider
     properties:
       hibernate:
         default_batch_fetch_size: 100
@@ -38,3 +36,22 @@ spring:
         order_inserts: true
         order_updates: true
     show-sql: true
+
+bucket4j:
+  enabled: true
+  filters:
+    - cache-name: buckets
+      filter-method: servlet
+      filter-order: -10
+      url: .*
+      metrics:
+        tags:
+          - key: USERNAME
+            expression: "'anonym'"
+          - key: URL
+            expression: getRequestURI()
+      rate-limits:
+        - bandwidths:
+            - capacity: 30
+              time: 1
+              unit: minutes
