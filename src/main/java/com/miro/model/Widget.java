@@ -19,25 +19,19 @@ public class Widget {
 
     @Id
     @GeneratedValue(generator = SEQUENCE_NAME, strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = SEQUENCE_NAME, sequenceName = SEQUENCE_NAME, allocationSize = 1)
+    @SequenceGenerator(name = SEQUENCE_NAME, sequenceName = SEQUENCE_NAME, allocationSize = 1, initialValue = 0)
     @Column(name = "id", nullable = false)
     Long id;
 
-    @NotNull
     Integer zIndex;
 
-    @NotNull
     Integer x;
 
-    @NotNull
     Integer y;
 
-    @NotNull
     Integer width;
 
-    @NotNull
     Integer height;
 
-    @NotNull
     Instant lastModificationTs;
 }
