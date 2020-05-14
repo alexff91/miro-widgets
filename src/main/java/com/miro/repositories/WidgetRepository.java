@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface WidgetRepository extends PagingAndSortingRepository<Widget, Integer> {
+public interface WidgetRepository extends PagingAndSortingRepository<Widget, Long> {
     Widget findOneById(Long id);
 
     Optional<Widget> findById(Long id);

@@ -4,6 +4,7 @@ import com.miro.model.Widget;
 import com.miro.model.WidgetDto;
 import com.miro.services.WidgetService;
 import com.miro.utils.WidgetMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class WidgetRestController {
     final
     WidgetService widgetService;
 
-    public WidgetRestController(WidgetService widgetService) {
+    public WidgetRestController(@Qualifier("inMemoryWidgetServiceImpl") WidgetService widgetService) {
         this.widgetService = widgetService;
     }
 
@@ -53,7 +54,7 @@ public class WidgetRestController {
 
 
     @DeleteMapping("/{widgetId}")
-    public ResponseEntity<String> deleteWidget(@PathVariable Integer widgetId) {
+    public ResponseEntity<String> deleteWidget(@PathVariable Long widgetId) {
         widgetService.delete(widgetId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -70,17 +71,17 @@ public class WidgetRestController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Widget>> getWidgets(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer size) {
+    public ResponseEntity<Page<Widget>> getWidgets(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer pageSize) {
         if (page == null) {
             page = ZERO_PAGE_NUM;
         }
-        if (size == null) {
-            size = DEFAULT_PAGE_SIZE;
+        if (pageSize == null) {
+            pageSize = DEFAULT_PAGE_SIZE;
         }
-        if (size > MAX_PAGE_SIZE) {
-            size = MAX_PAGE_SIZE;
+        if (pageSize > MAX_PAGE_SIZE) {
+            pageSize = MAX_PAGE_SIZE;
         }
-        Page<Widget> widgets = widgetService.getAll(page, size);
+        Page<Widget> widgets = widgetService.getAll(page, pageSize);
         return new ResponseEntity<Page<Widget>>(widgets, HttpStatus.OK);
     }
 }
