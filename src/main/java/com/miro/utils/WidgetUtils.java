@@ -1,6 +1,7 @@
-package com.miro.services;
+package com.miro.utils;
 
 import com.miro.model.Widget;
+import lombok.Data;
 
 import java.time.Instant;
 import java.util.Collections;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 public class WidgetUtils {
     public static final String Z_INDEX_COLUMN = "zIndex";
 
-    static List<Widget> updateZIndex(Widget widget, List<Widget> widgets) {
+    public static List<Widget> updateZIndex(Widget widget, List<Widget> widgets) {
         if (widgets.stream()
                 .anyMatch(widgetFiltered -> widgetFiltered.getZIndex().equals(widget.getZIndex()))) {
             List<Widget> shiftedWidgets = widgets.stream()
@@ -29,7 +30,7 @@ public class WidgetUtils {
         }
     }
 
-    static void checkNullZIndex(Widget widget, List<Widget> widgets) {
+    public static void checkNullZIndex(Widget widget, List<Widget> widgets) {
         if (widget.getZIndex() == null) {
             int computedZIndex = 0;
             Optional<Widget> max = widgets.stream().max(Comparator.comparingInt(Widget::getZIndex));
@@ -38,5 +39,20 @@ public class WidgetUtils {
             }
             widget.setZIndex(computedZIndex);
         }
+    }
+
+    public static boolean contains(Rectangle r1, Rectangle r2) {
+        return (r2.getX() + r2.getWidth()) < (r1.getX() + r1.getWidth())
+                && (r2.getX()) > (r1.getX())
+                && (r2.getY()) > (r1.getY())
+                && (r2.getY() + r2.getHeight()) < (r1.getY() + r1.getHeight());
+    }
+
+    @Data
+    public static class Rectangle {
+        private int x;
+        private int y;
+        private int width;
+        private int height;
     }
 }

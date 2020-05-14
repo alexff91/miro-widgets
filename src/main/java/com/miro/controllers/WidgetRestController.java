@@ -14,7 +14,6 @@ import java.time.Instant;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/widgets")
 public class WidgetRestController {
 
@@ -25,7 +24,7 @@ public class WidgetRestController {
     final
     WidgetService widgetService;
 
-    public WidgetRestController(@Qualifier("inMemoryWidgetServiceImpl") WidgetService widgetService) {
+    public WidgetRestController(@Qualifier("WidgetService") WidgetService widgetService) {
         this.widgetService = widgetService;
     }
 
@@ -71,7 +70,8 @@ public class WidgetRestController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Widget>> getWidgets(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer pageSize) {
+    public ResponseEntity<Page<Widget>> getWidgets(@RequestParam(required = false) Integer page,
+                                                   @RequestParam(required = false) Integer pageSize) {
         if (page == null) {
             page = ZERO_PAGE_NUM;
         }

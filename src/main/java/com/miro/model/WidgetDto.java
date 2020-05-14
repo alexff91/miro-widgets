@@ -1,8 +1,7 @@
 package com.miro.model;
 
-import lombok.*;
-
-import javax.persistence.Entity;
+import lombok.Builder;
+import lombok.Data;
 
 @Builder
 @Data

@@ -2,6 +2,11 @@ logging:
   level: error
   level.org.springframework.data: debug
 
+# Database or in-memory implementation
+service:
+  class: InMemory
+#  class: H2Service
+
 server:
   port: 8081
 
@@ -36,21 +41,29 @@ spring:
         order_updates: true
     show-sql: true
 
-bucket4j:
-  enabled: true
-  filters:
-    - cache-name: buckets
-      filter-method: servlet
-      filter-order: -10
-      url: .*
-      metrics:
-        tags:
-          - key: USERNAME
-            expression: "'anonym'"
-          - key: URL
-            expression: getRequestURI()
-      rate-limits:
-        - bandwidths:
-            - capacity: 30
-              time: 1
-              unit: minutes
+
+#Config for rate limits of endpoints
+zuul:
+  routes:
+    widgetsAll:
+      path: /api/v1/widgets
+      url: forward:/
+    default:
+      strip-prefix: false
+      path: /api/v1/widgets/**
+      url: forward:/
+  ratelimit:
+    enabled: true
+    repository: REDIS
+    policy-list:
+      widgetsAll:
+        - limit: 200
+          refresh-interval: 60
+          type:
+            - origin
+      default:
+        - limit: 1000
+          refresh-interval: 60
+          type:
+            - origin
+  strip-prefix: true

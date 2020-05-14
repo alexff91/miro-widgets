@@ -2,6 +2,7 @@ package com.miro.services;
 
 import com.miro.model.Widget;
 import com.miro.repositories.WidgetRepository;
+import com.miro.utils.WidgetUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,10 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-import static com.miro.services.WidgetUtils.Z_INDEX_COLUMN;
+import static com.miro.utils.WidgetUtils.Z_INDEX_COLUMN;
 import static org.springframework.transaction.annotation.Isolation.READ_COMMITTED;
 
-@Service
+@Service("H2Service")
 @Transactional
 public class H2WidgetServiceImpl implements WidgetService {
 
