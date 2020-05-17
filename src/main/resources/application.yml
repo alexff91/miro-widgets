@@ -17,9 +17,6 @@ management:
         include: "*"
 
 spring:
-  cache:
-    jcache:
-      config: classpath:ehcache.xml
   datasource:
     password: 40PdyLX3pm
     url: jdbc:h2:mem:widget_db;

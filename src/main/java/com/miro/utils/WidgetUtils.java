@@ -1,7 +1,9 @@
 package com.miro.utils;
 
 import com.miro.model.Widget;
+import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.domain.Page;
 
 import java.time.Instant;
 import java.util.Collections;
@@ -41,18 +43,64 @@ public class WidgetUtils {
         }
     }
 
-    public static boolean contains(Rectangle r1, Rectangle r2) {
-        return (r2.getX() + r2.getWidth()) < (r1.getX() + r1.getWidth())
-                && (r2.getX()) > (r1.getX())
-                && (r2.getY()) > (r1.getY())
-                && (r2.getY() + r2.getHeight()) < (r1.getY() + r1.getHeight());
+    public static List<Widget> filter(Integer lowerLeftX, Integer lowerLeftY, Integer upperRightX, Integer upperRightY, Page<Widget> widgets) {
+        return widgets.get()
+                .filter(widget -> {
+                    Rectangle filterArea = Rectangle.builder()
+                            .x(lowerLeftX)
+                            .y(lowerLeftY)
+                            .height(upperRightY - lowerLeftY)
+                            .width(upperRightX - lowerLeftX)
+                            .build();
+                    Rectangle widgetArea = Rectangle.builder()
+                            .x(widget.getX())
+                            .y(widget.getY())
+                            .height(widget.getHeight())
+                            .width(widget.getWidth())
+                            .build();
+                    return filterArea.contains(widgetArea);
+                })
+                .sorted(Comparator.comparingInt(Widget::getZIndex))
+                .collect(Collectors.toList());
     }
 
     @Data
+    @Builder
     public static class Rectangle {
         private int x;
         private int y;
         private int width;
         private int height;
+
+        public boolean contains(Rectangle r) {
+            return contains(r.x, r.y, r.width, r.height);
+        }
+
+        private boolean contains(int X, int Y, int W, int H) {
+            int w = this.width;
+            int h = this.height;
+            if ((w | h | W | H) < 0) {
+                return false;
+            }
+            int x = this.x;
+            int y = this.y;
+            if (X < x || Y < y) {
+                return false;
+            }
+            w += x;
+            W += X;
+            if (W <= X) {
+                if (w >= x || W > w) return false;
+            } else {
+                if (w >= x && W > w) return false;
+            }
+            h += y;
+            H += Y;
+            if (H <= Y) {
+                return h < y && H <= h;
+            } else {
+                return h < y || H <= h;
+            }
+        }
     }
 }

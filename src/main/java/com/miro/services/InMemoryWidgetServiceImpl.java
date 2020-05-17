@@ -47,10 +47,11 @@ public class InMemoryWidgetServiceImpl implements WidgetService {
 
     @Override
     public Page<Widget> getAll(Integer page, Integer size) {
-        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, Z_INDEX_COLUMN));
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, Z_INDEX_COLUMN));
         return new PageImpl<>(Collections.list(widgetsStore.elements()).stream()
                 .skip(page * size)
                 .limit(size)
+                .sorted(Comparator.comparingInt(Widget::getZIndex))
                 .collect(Collectors.toCollection(ArrayList::new)), pageRequest, widgetsStore.size());
     }
 }

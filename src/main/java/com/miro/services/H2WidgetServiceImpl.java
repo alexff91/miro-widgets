@@ -45,7 +45,7 @@ public class H2WidgetServiceImpl implements WidgetService {
 
     @Override
     public Page<Widget> getAll(Integer page, Integer size) {
-        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, Z_INDEX_COLUMN));
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, Z_INDEX_COLUMN));
         return repository.findAll(pageRequest);
     }
 }
