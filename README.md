@@ -1,4 +1,4 @@
-# miro-widgets
+# miro-books
 
 Swagger are accessible via the link http://localhost:8081/swagger-ui.html
 
@@ -11,17 +11,17 @@ Redis was selected as a storage of rate limits per each endpoint.
 ```
 zuul:
   routes:
-    widgetsAll:
-      path: /api/v1/widgets
+    booksAll:
+      path: /api/v1/books
       url: forward:/
     default:
-      path: /api/v1/widgets/**
+      path: /api/v1/books/**
       url: forward:/
   ratelimit:
     enabled: true
     repository: bucket4j_ignite
     policy-list:
-      widgetsAll:
+      booksAll:
         - limit: 200
           refresh-interval: 60
           type:

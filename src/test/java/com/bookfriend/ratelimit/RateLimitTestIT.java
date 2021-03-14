@@ -1,4 +1,4 @@
-package com.miro.ratelimit;
+package com.bookfriend.ratelimit;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class RateLimitTestIT {
 
     @Test
     public void testNotExceedingCapacityRequest() {
-        ResponseEntity<String> response = this.restTemplate.getForEntity("/api/v1/widgets/1", String.class);
+        ResponseEntity<String> response = this.restTemplate.getForEntity("/api/v1/books/1", String.class);
         HttpHeaders headers = response.getHeaders();
         assertHeaders(headers, "rate-limit-application_default_127.0.0.1");
         assertEquals(NOT_FOUND, response.getStatusCode());
@@ -30,7 +30,7 @@ public class RateLimitTestIT {
 
     @Test
     public void testNoRateLimit() {
-        ResponseEntity<String> response = this.restTemplate.getForEntity("/api/v1/widgets/1", String.class);
+        ResponseEntity<String> response = this.restTemplate.getForEntity("/api/v1/books/1", String.class);
         HttpHeaders headers = response.getHeaders();
         assertHeaders(headers, "rate-limit-application_default_127.0.0.1");
         assertEquals(NOT_FOUND, response.getStatusCode());
@@ -39,7 +39,7 @@ public class RateLimitTestIT {
     @Test
     public void testMultipleUrls() {
         for (int i = 0; i < 12; i++) {
-            ResponseEntity<String> response = this.restTemplate.getForEntity("/api/v1/widgets/1", String.class);
+            ResponseEntity<String> response = this.restTemplate.getForEntity("/api/v1/books/1", String.class);
             HttpHeaders headers = response.getHeaders();
             assertHeaders(headers, "rate-limit-application_default_127.0.0.1");
             assertEquals(NOT_FOUND, response.getStatusCode());
@@ -48,13 +48,13 @@ public class RateLimitTestIT {
 
     @Test
     public void testExceedingRateLimit() {
-        ResponseEntity<String> response = this.restTemplate.getForEntity("/api/v1/widgets", String.class);
+        ResponseEntity<String> response = this.restTemplate.getForEntity("/api/v1/books", String.class);
         HttpHeaders headers = response.getHeaders();
-        String key = "rate-limit-application_widgetsall_127.0.0.1";
+        String key = "rate-limit-application_booksall_127.0.0.1";
         assertEquals(OK, response.getStatusCode());
 
         for (int i = 0; i < 300; i++) {
-            response = this.restTemplate.getForEntity("/api/v1/widgets", String.class);
+            response = this.restTemplate.getForEntity("/api/v1/books", String.class);
         }
         assertEquals(TOO_MANY_REQUESTS, response.getStatusCode());
     }

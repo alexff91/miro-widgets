@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.miro</groupId>
-    <artifactId>widgets</artifactId>
+    <artifactId>books</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
@@ -36,7 +36,7 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.miro.Application</mainClass>
+                    <mainClass>com.bookfriend.Application</mainClass>
                 </configuration>
             </plugin>
 
@@ -144,8 +144,22 @@
             <artifactId>embedded-redis</artifactId>
             <version>0.6</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.positiondev.epublib</groupId>
+            <artifactId>epublib-core</artifactId>
+            <version>3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+        </dependency>
 
     </dependencies>
-
+    <repositories>
+        <repository>
+            <id>psiegman</id>
+            <url>https://github.com/psiegman/mvn-repo/raw/master/releases</url>
+        </repository>
+    </repositories>
 </project>

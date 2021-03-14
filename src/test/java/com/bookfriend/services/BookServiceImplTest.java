@@ -1,4 +1,4 @@
-package com.miro.services;
+package com.bookfriend.services;
 
 import org.junit.Ignore;
 import org.junit.jupiter.api.AfterEach;
@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 @Ignore
-class WidgetServiceImplTest {
+class BookServiceImplTest {
 
     @BeforeEach
     void setUp() {

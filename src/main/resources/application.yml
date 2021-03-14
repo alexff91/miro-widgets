@@ -19,7 +19,7 @@ management:
 spring:
   datasource:
     password: 40PdyLX3pm
-    url: jdbc:h2:mem:widget_db;
+    url: jdbc:h2:mem:book_db;
     username: miro
     driver-class-name: org.h2.Driver
     platform: h2
@@ -37,23 +37,26 @@ spring:
         order_inserts: true
         order_updates: true
     show-sql: true
-
+  servlet:
+    multipart:
+      max-file-size: -1
+      max-request-size: -1
 
 #Config for rate limits of endpoints
 zuul:
   routes:
-    widgetsAll:
-      path: /api/v1/widgets
+    booksAll:
+      path: /api/v1/books
       url: forward:/
     default:
       strip-prefix: false
-      path: /api/v1/widgets/**
+      path: /api/v1/books/**
       url: forward:/
   ratelimit:
     enabled: true
     repository: REDIS
     policy-list:
-      widgetsAll:
+      booksAll:
         - limit: 200
           refresh-interval: 60
           type:
@@ -64,3 +67,4 @@ zuul:
           type:
             - origin
   strip-prefix: true
+
